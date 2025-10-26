@@ -11,7 +11,7 @@
           <input
             type="text"
             :value="searchQuery"
-            @input="$emit('update:search-query', $event.target.value)"
+           @input="$emit('update:search-query', ($event.target as HTMLInputElement)?.value)"
             placeholder="Search tickets..."
             class="pl-10 h-10 rounded-xl w-full border border-gray-300 focus:border-purple-500 focus:ring focus:ring-purple-200"
           />
