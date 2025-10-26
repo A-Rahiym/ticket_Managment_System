@@ -3,13 +3,13 @@
   <tr
     class="hidden md:table-row border-b border-border/30 transition-colors"
     :class="isRowSelected ? 'bg-primary/10' : 'hover:bg-muted/50'"
-    @click="onRowClick"
+    @click="onRowClick?.()"
   >
     <td class="p-4">
       <input
         type="checkbox"
         :checked="isSelected"
-        @change.stop="onToggleSelection"
+        @change.stop="onToggleSelection?.()"
         aria-label="Select ticket"
         class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer"
       />
@@ -91,7 +91,7 @@
           variant="ghost"
           size="icon"
           class="h-8 w-8 rounded-xl gradient-purple-pink border-2 border-[hsl(var(--neon-green))] shadow-md shadow-[hsl(var(--neon-green))]/20"
-          @click.stop="onEdit"
+          @click.stop="onEdit?.()"
         >
           <Edit2 class="h-4 w-4" />
         </Button>
@@ -99,7 +99,7 @@
           variant="destructive"
           size="icon"
           class="h-8 w-8 rounded-xl border-2 border-red-500 shadow-md shadow-red-500/20"
-          @click.stop="onDelete"
+          @click.stop="onDelete?.()"
         >
           <Trash2 class="h-4 w-4" />
         </Button>
@@ -111,7 +111,7 @@
   <div
     class="block md:hidden border border-border/50 rounded-lg shadow-sm bg-card p-4 mb-4 transition-colors animate-in fade-in"
     :class="isRowSelected ? 'bg-primary/10' : 'hover:bg-muted/50'"
-    @click="onRowClick"
+    @click="onRowClick?.()"
   >
     <div class="flex flex-col gap-3">
       <div class="flex items-center justify-between">
@@ -120,7 +120,7 @@
             variant="ghost"
             size="icon"
             class="h-7 w-7 rounded-lg gradient-purple-pink border-2 border-[hsl(var(--neon-green))] shadow-md shadow-[hsl(var(--neon-green))]/20"
-            @click.stop="onEdit"
+            @click.stop="onEdit?.()"
           >
             <Edit2 class="h-3 w-3" />
           </Button>
@@ -128,7 +128,7 @@
             variant="destructive"
             size="icon"
             class="h-7 w-7 rounded-lg border-2 border-red-500 shadow-md shadow-red-500/20"
-            @click.stop="onDelete"
+            @click.stop="onDelete?.()"
           >
             <Trash2 class="h-3 w-3" />
           </Button>
@@ -207,15 +207,26 @@ import { Edit2, Trash2 } from "lucide-vue-next";
 import Button from "@/components/ui/Button.vue";
 import Badge from "@/components/ui/Badge.vue";
 
-const props = defineProps({
-  ticket: Object,
-  isSelected: Boolean,
-  isRowSelected: Boolean,
-  onToggleSelection: Function,
-  onEdit: Function,
-  onDelete: Function,
-  onRowClick: Function,
-});
+// 🧠 Use proper function types (no TS warnings anymore)
+interface Ticket {
+  id?: string;
+  title?: string;
+  description?: string;
+  assignee?: string;
+  status?: string;
+  priority?: string;
+  createdAt?: string;
+}
+
+const props = defineProps<{
+  ticket?: Ticket;
+  isSelected?: boolean;
+  isRowSelected?: boolean;
+  onToggleSelection?: () => void;
+  onEdit?: () => void;
+  onDelete?: () => void;
+  onRowClick?: () => void;
+}>();
 
 const getInitials = (name?: string) =>
   name
