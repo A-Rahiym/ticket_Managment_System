@@ -36,7 +36,7 @@
         </div>
       </div>
 
-      
+
       <TicketFilters
         :search-query="searchQuery"
         :status-filter="statusFilter"
@@ -80,7 +80,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts">    
 import { ref, computed, watch } from 'vue';
 import { toast } from 'vue3-toastify';
 import TicketFilters from './components/TicketFilters.vue';
