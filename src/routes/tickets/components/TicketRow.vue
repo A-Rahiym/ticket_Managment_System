@@ -6,21 +6,23 @@
     @click="onRowClick"
   >
     <td class="p-4">
-      <Checkbox
+      <input
+        type="checkbox"
         :checked="isSelected"
         @change.stop="onToggleSelection"
         aria-label="Select ticket"
+        class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer"
       />
     </td>
 
     <td class="p-4">
       <div>
-        <p class="font-medium">{{ ticket.title }}</p>
+        <p class="font-medium">{{ ticket?.title }}</p>
         <p
-          v-if="ticket.description"
+          v-if="ticket?.description"
           class="text-sm text-muted-foreground line-clamp-1 mt-1"
         >
-          {{ ticket.description }}
+          {{ ticket?.description }}
         </p>
       </div>
     </td>
@@ -29,26 +31,26 @@
       <div
         class="w-8 h-8 rounded-full flex items-center justify-center bg-primary/10 text-primary text-xs"
       >
-        {{ getInitials(ticket.assignee) }}
+        {{ getInitials(ticket?.assignee) }}
       </div>
-      <span class="text-sm">{{ ticket.assignee }}</span>
+      <span class="text-sm">{{ ticket?.assignee }}</span>
     </td>
 
     <td class="p-4">
       <Badge
-        v-if="ticket.status === 'open'"
+        v-if="ticket?.status === 'open'"
         className="rounded-full bg-green-100 text-green-700 border-green-200 hover:bg-green-100"
       >
         Open
       </Badge>
       <Badge
-        v-else-if="ticket.status === 'in_progress'"
+        v-else-if="ticket?.status === 'in_progress'"
         className="rounded-full bg-amber-100 text-amber-700 border-amber-200 hover:bg-amber-100"
       >
         In Progress
       </Badge>
       <Badge
-        v-else-if="ticket.status === 'closed'"
+        v-else-if="ticket?.status === 'closed'"
         className="rounded-full bg-gray-100 text-gray-700 border-gray-200 hover:bg-gray-100"
       >
         Resolved
@@ -57,21 +59,21 @@
 
     <td class="p-4">
       <Badge
-        v-if="ticket.priority === 'high'"
+        v-if="ticket?.priority === 'high'"
         variant="outline"
         className="rounded-full border-red-300 text-red-700 bg-red-50"
       >
         High
       </Badge>
       <Badge
-        v-else-if="ticket.priority === 'medium'"
+        v-else-if="ticket?.priority === 'medium'"
         variant="outline"
         className="rounded-full border-primary/30 text-primary bg-primary/5"
       >
         Medium
       </Badge>
       <Badge
-        v-else-if="ticket.priority === 'low'"
+        v-else-if="ticket?.priority === 'low'"
         variant="outline"
         className="rounded-full border-blue-300 text-blue-700 bg-blue-50"
       >
@@ -80,7 +82,7 @@
     </td>
 
     <td class="p-4 text-sm text-muted-foreground">
-      {{ new Date(ticket.createdAt).toLocaleDateString() }}
+      {{ ticket?.createdAt ? new Date(ticket?.createdAt).toLocaleDateString() : "—" }}
     </td>
 
     <td class="p-4">
@@ -113,11 +115,6 @@
   >
     <div class="flex flex-col gap-3">
       <div class="flex items-center justify-between">
-        <Checkbox
-          :checked="isSelected"
-          @change.stop="onToggleSelection"
-          aria-label="Select ticket"
-        />
         <div class="flex gap-2">
           <Button
             variant="ghost"
@@ -138,59 +135,59 @@
         </div>
       </div>
 
-      <p class="font-medium text-sm">{{ ticket.title }}</p>
+      <p class="font-medium text-sm">{{ ticket?.title }}</p>
       <p
-        v-if="ticket.description"
+        v-if="ticket?.description"
         class="text-xs text-muted-foreground line-clamp-2 mt-1"
       >
-        {{ ticket.description }}
+        {{ ticket?.description }}
       </p>
 
       <div class="flex items-center gap-2">
         <div
           class="w-6 h-6 rounded-full flex items-center justify-center bg-primary/10 text-primary text-xs"
         >
-          {{ getInitials(ticket.assignee) }}
+          {{ getInitials(ticket?.assignee) }}
         </div>
-        <span class="text-xs">{{ ticket.assignee }}</span>
+        <span class="text-xs">{{ ticket?.assignee }}</span>
       </div>
 
       <div class="flex gap-2">
         <Badge
-          v-if="ticket.status === 'open'"
+          v-if="ticket?.status === 'open'"
           className="rounded-full bg-green-100 text-green-700 border-green-200 hover:bg-green-100"
         >
           Open
         </Badge>
         <Badge
-          v-else-if="ticket.status === 'in_progress'"
+          v-else-if="ticket?.status === 'in_progress'"
           className="rounded-full bg-amber-100 text-amber-700 border-amber-200 hover:bg-amber-100"
         >
           In Progress
         </Badge>
         <Badge
-          v-else-if="ticket.status === 'closed'"
+          v-else-if="ticket?.status === 'closed'"
           className="rounded-full bg-gray-100 text-gray-700 border-gray-200 hover:bg-gray-100"
         >
           Resolved
         </Badge>
 
         <Badge
-          v-if="ticket.priority === 'high'"
+          v-if="ticket?.priority === 'high'"
           variant="outline"
           className="rounded-full border-red-300 text-red-700 bg-red-50"
         >
           High
         </Badge>
         <Badge
-          v-else-if="ticket.priority === 'medium'"
+          v-else-if="ticket?.priority === 'medium'"
           variant="outline"
           className="rounded-full border-primary/30 text-primary bg-primary/5"
         >
           Medium
         </Badge>
         <Badge
-          v-else-if="ticket.priority === 'low'"
+          v-else-if="ticket?.priority === 'low'"
           variant="outline"
           className="rounded-full border-blue-300 text-blue-700 bg-blue-50"
         >
@@ -199,7 +196,7 @@
       </div>
 
       <p class="text-xs text-muted-foreground">
-        Created: {{ new Date(ticket.createdAt).toLocaleDateString() }}
+        Created: {{ ticket?.createdAt ? new Date(ticket?.createdAt).toLocaleDateString() : "—" }}
       </p>
     </div>
   </div>
@@ -207,8 +204,7 @@
 
 <script setup lang="ts">
 import { Edit2, Trash2 } from "lucide-vue-next";
-import  Button  from "@/components/ui/Button.vue";
-// import  Checkbox  from "@/components/ui/Checkbox.vue";
+import Button from "@/components/ui/Button.vue";
 import Badge from "@/components/ui/Badge.vue";
 
 const props = defineProps({
@@ -221,11 +217,11 @@ const props = defineProps({
   onRowClick: Function,
 });
 
-const getInitials = (name: string) =>
+const getInitials = (name?: string) =>
   name
     ?.split(" ")
-    .map((n) => n[0])
+    .map((n) => n?.[0])
     .join("")
-    .toUpperCase()
-    .slice(0, 2);
+    ?.toUpperCase()
+    ?.slice(0, 2) || "";
 </script>

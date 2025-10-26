@@ -9,7 +9,7 @@ import { initialTickets } from '../mock/mock';
 export const useTicketStore = defineStore('ticket', () => {
   // State
   const tickets = ref<Ticket[]>(initialTickets);
-
+  console.log( tickets.value)
   // Getters
   const openTicketCount = computed(() => tickets.value.filter(t => t.status === 'open').length);
   const inProgressTicketCount = computed(() => tickets.value.filter(t => t.status === 'in_progress').length);
@@ -60,6 +60,7 @@ export const useTicketStore = defineStore('ticket', () => {
         position: 'top-right',
         autoClose: 3000,
       });
+      console.log("new tickets",tickets.value)
     } catch (error) {
       toast.error('Failed to delete ticket. Please retry.', {
         position: 'top-right',
