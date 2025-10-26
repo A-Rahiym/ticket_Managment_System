@@ -16,7 +16,7 @@ const router = createRouter({
 
 app.use(Vue3Toastify, {
   // ⏱ Toast behavior
-  autoClose: 2500,
+  autoClose: 5000,
   position: toast.POSITION.TOP_RIGHT,
   hideProgressBar: true,
   closeOnClick: true,
@@ -29,7 +29,7 @@ app.use(Vue3Toastify, {
 
   // 🎨 Visuals
   theme: 'dark',
-  
+
   toastStyle: {
     background: 'rgba(0, 0, 0, 0.85)', // glassy black background
     color: '#fff',
@@ -41,8 +41,6 @@ app.use(Vue3Toastify, {
     boxShadow: '0 4px 16px rgba(0, 0, 0, 0.4)',
   },
 })
-
 app.use(pinia)
 app.use(router)
-// app.use(Vue3Toasity, { autoClose: 3000 })
 app.mount('#app')

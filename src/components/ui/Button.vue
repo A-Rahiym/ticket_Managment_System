@@ -36,4 +36,6 @@ const buttonClasses = computed(() => {
 
 // Default to 'button' if tag is not provided
 const tag = computed(() => props.tag || 'button')
+
+
 </script>

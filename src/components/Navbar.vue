@@ -125,13 +125,12 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useRoute, RouterLink } from 'vue-router'
+import { RouterLink } from 'vue-router'
 import { useAuthStore } from '../context/auth'
 import Button from './ui/Button.vue'
 import { LogOut, User, Menu, X } from 'lucide-vue-next'
 
 const authStore = useAuthStore()
-const route = useRoute()
 const isMobileMenuOpen = ref(false)
 
 const navItems = [

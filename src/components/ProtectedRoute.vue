@@ -1,5 +1,5 @@
 <template>
-  <slot v-if="authStore.isAuthenticated"/>
+  <router-view v-if="authStore.isAuthenticated" />
 </template>
 
 <script setup lang="ts">
@@ -21,7 +21,3 @@ watchEffect(() => {
   }
 })
 </script>
-
-<style scoped>
-/* No styles needed as this is a wrapper component */
-</style>
