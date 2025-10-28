@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { useAuthStore } from '../context/auth'
+import { useAuthStore } from '../store/auth'
 import { toast } from 'vue3-toastify'
 import { watchEffect } from 'vue'
 

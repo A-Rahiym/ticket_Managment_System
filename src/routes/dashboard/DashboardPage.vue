@@ -11,9 +11,7 @@
         >
           Dashboard
         </h2>
-        <p class="text-muted-foreground">
-          Overview of your ticket management system
-        </p>
+        <p class="text-muted-foreground">Overview of your ticket management system</p>
       </div>
 
       <div
@@ -72,7 +70,7 @@ import { computed } from 'vue'
 import { Ticket as TicketIcon, AlertCircle, Clock, CheckCircle2 } from 'lucide-vue-next'
 import StatsCard from './components/StatsCard.vue'
 import QuickActions from './components/QuickActions.vue'
-import { useTicketStore } from '../../context/ticket'
+import { useTicketStore } from '../../store/ticket'
 
 const ticketStore = useTicketStore()
 

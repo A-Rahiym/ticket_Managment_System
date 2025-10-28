@@ -1,6 +1,6 @@
 // Mock initial tickets with more realistic data
 import type { Ticket } from "../types/ticket";
-
+import { Zap, Shield, BarChart3, Users, Bell, Clock } from 'lucide-vue-next'
 
 export const initialTickets: Ticket[] = [
   {
@@ -49,3 +49,48 @@ export const initialTickets: Ticket[] = [
     createdAt: "2025-01-17T08:00:00Z",
   },
 ];
+
+export const features = [
+  {
+    icon: Zap,
+    title: 'Lightning Fast',
+    description:
+      'Quick ticket creation and resolution with an intuitive interface designed for speed.',
+    gradient: 'gradient-purple-pink',
+  },
+  {
+    icon: Shield,
+    title: 'Secure & Reliable',
+    description:
+      'Enterprise-grade security ensuring your data is always protected and accessible.',
+    gradient: 'bg-gradient-to-br from-green-500 to-emerald-600',
+  },
+  {
+    icon: BarChart3,
+    title: 'Powerful Analytics',
+    description:
+      'Gain insights with comprehensive reports and real-time ticket statistics.',
+    gradient: 'bg-gradient-to-br from-blue-500 to-cyan-600',
+  },
+  {
+    icon: Users,
+    title: 'Team Collaboration',
+    description:
+      'Assign tickets, track progress, and collaborate seamlessly with your team.',
+    gradient: 'bg-gradient-to-br from-orange-500 to-amber-600',
+  },
+  {
+    icon: Bell,
+    title: 'Smart Notifications',
+    description:
+      'Stay updated with intelligent alerts for ticket updates and assignments.',
+    gradient: 'bg-gradient-to-br from-violet-500 to-purple-600',
+  },
+  {
+    icon: Clock,
+    title: '24/7 Availability',
+    description:
+      'Access your tickets anytime, anywhere with our cloud-based platform.',
+    gradient: 'bg-gradient-to-br from-pink-500 to-rose-600',
+  },
+]

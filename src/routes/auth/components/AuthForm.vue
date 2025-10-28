@@ -85,7 +85,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { toast } from 'vue3-toastify'
-import { useAuthStore } from '../../../context/auth'
+import { useAuthStore } from '../../../store/auth'
 
 const props = defineProps<{
   mode: 'login' | 'signup'
@@ -142,16 +142,8 @@ function validateForm() {
 }
 
 async function handleSubmit() {
-  console.log('🚀 Submitting form...', formData.value)
   if (validateForm()) {
     try {
-      console.log('📡 Sending auth request...', {
-        email: formData.value.email,
-        password: formData.value.password,
-        name: formData.value.name,
-        mode: props.mode,
-      })
-
       await authStore.handleAuthSuccess(
         formData.value.email,
         formData.value.password,
@@ -163,14 +155,14 @@ async function handleSubmit() {
       console.error('❌ Auth error:', error)
       toast.error('Authentication failed. Please try again.', {
         position: 'top-right',
-        autoClose: 10000,
+        autoClose: 3000,
       })
     }
   } else {
     console.warn('⚠️ Form validation failed:', errors.value)
     toast.error('Please check your inputs and try again.', {
       position: 'top-right',
-      autoClose: 10000,
+      autoClose: 3000,
     })
   }
 }

@@ -18,9 +18,7 @@
       <div
         class="inline-flex items-center justify-center mb-6 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20"
       >
-        <span class="text-sm font-medium text-primary">
-          Welcome to Modern Support
-        </span>
+        <span class="text-sm font-medium text-primary"> Welcome to Modern Support </span>
       </div>
 
       <h1
@@ -28,32 +26,28 @@
       >
         Streamline Your Support with Smart Ticket Management
       </h1>
-      <p
-        class="max-w-2xl mx-auto mb-10 text-base sm:text-lg text-muted-foreground"
-      >
-        Manage customer inquiries efficiently with our intuitive ticket system.
-        Track, prioritize, and resolve issues faster than ever before.
+      <p class="max-w-2xl mx-auto mb-10 text-base sm:text-lg text-muted-foreground">
+        Manage customer inquiries efficiently with our intuitive ticket system. Track, prioritize,
+        and resolve issues faster than ever before.
       </p>
       <div class="flex flex-col sm:flex-row justify-center gap-4">
         <RouterLink to="/signup">
-          <Button
-            size="lg"
-            class="rounded-full px-8 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold border-2 border-[hsl(var(--neon-green))] btn-hover-scale"
+          <button
+            class="rounded-full px-8 py-3 text-lg bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold border-2 border-[hsl(var(--neon-green))] transform transition duration-300 hover:scale-105 flex items-center justify-center w-full sm:w-auto"
             aria-label="Get started with TicketFlow"
           >
             Get Started
-            <ArrowRight class="ml-2 w-4 h-4 arrow-hover" />
-          </Button>
+            <ArrowRight class="ml-2 w-4 h-4" />
+          </button>
         </RouterLink>
+
         <RouterLink to="/login">
-          <Button
-            size="lg"
-            class="rounded-full px-8 bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-semibold border-2 border-[hsl(var(--neon-green))] btn-hover-scale"
+          <button
+            class="rounded-full px-8 py-3 text-lg bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-semibold border-2 border-[hsl(var(--neon-green))] transform transition duration-300 hover:scale-105 flex items-center justify-center w-full sm:w-auto"
             aria-label="Sign in to TicketFlow"
-            tag="a"
           >
             Sign In
-          </Button>
+          </button>
         </RouterLink>
       </div>
     </div>
@@ -63,7 +57,6 @@
 
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
-import Button from '@/components/ui/Button.vue'
 import { ArrowRight } from 'lucide-vue-next'
 import WaveBackground from '@/components/common/WaveBackground.vue'
 </script>

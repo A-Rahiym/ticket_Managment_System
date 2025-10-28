@@ -37,7 +37,6 @@ defineProps<{
   mode: 'login' | 'signup'
 }>()
 </script>
-
 <style scoped>
 /* Scoped styles if needed */
 </style>

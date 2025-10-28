@@ -2,7 +2,6 @@ import type { Ticket } from "../types/ticket";
 
 export const mockLogin = async (email: string, password: string) => {
   await new Promise((resolve) => setTimeout(resolve, 500)); // Simulate API delay
-  console.log(email , password)
   if (email === "test@example.com" && password === "password123") {
     return {
       token: "mock-token-123",

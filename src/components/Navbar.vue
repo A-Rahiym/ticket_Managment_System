@@ -10,12 +10,12 @@
         <!-- Logo -->
         <RouterLink to="/dashboard" class="flex items-center gap-2">
           <div
-            class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center"
+            class="w-8 h-8 rounded-lg bg-linear-to-br from-primary to-accent flex items-center justify-center"
           >
             <span class="font-bold text-white">T</span>
           </div>
           <span
-            class="font-semibold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
+            class="font-semibold bg-linear-to-r from-primary to-accent bg-clip-text text-transparent"
           >
             TicketFlow
           </span>
@@ -109,10 +109,7 @@
               class="rounded-full border-2 border-[hsl(var(--neon-green))] hover:bg-red-500/10 btn-hover-scale"
               aria-label="Log out"
               role="menuitem"
-              @click="
-                authStore.handleLogout();
-                isMobileMenuOpen = false;
-              "
+              @click="logoutuser"
             >
               <LogOut class="w-4 h-4" />
             </Button>
@@ -125,20 +122,25 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { RouterLink } from 'vue-router'
-import { useAuthStore } from '../context/auth'
+import { RouterLink, useRouter } from 'vue-router'
+import { useAuthStore } from '../store/auth'
 import Button from './ui/Button.vue'
 import { LogOut, User, Menu, X } from 'lucide-vue-next'
 
 const authStore = useAuthStore()
 const isMobileMenuOpen = ref(false)
-
+const router = useRouter()
+const logoutuser = () => {
+  console.log('Logging out user...')
+  authStore.handleLogout()
+  isMobileMenuOpen.value = false
+  router.replace('/login')
+}
 const navItems = [
   { name: 'Dashboard', path: '/dashboard' },
   { name: 'Tickets', path: '/tickets' },
 ]
 </script>
-
 <style scoped>
 /* Scoped styles if needed */
 </style>

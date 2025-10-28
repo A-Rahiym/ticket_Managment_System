@@ -35,19 +35,10 @@ export const useAuthStore = defineStore('auth', () => {
       localStorage.setItem('ticketapp_session', JSON.stringify({ token, user: userData }))
       isAuthenticated.value = true
       user.value = userData
-      toast.success(name ? 'Signup successful!' : 'Login successful!', {
-        position: 'top-right',
-        autoClose: 10000,
-      })
+      toast.success(name ? 'Signup successful!' : 'Login successful!', {})
+
       router.replace('/dashboard')
     } catch (error) {
-      toast.error(
-        name ? 'Signup failed. Please try again.' : 'Invalid credentials. Please try again.',
-        {
-          position: 'top-right',
-          autoClose: 10000,
-        },
-      )
       throw error
     }
   }
@@ -56,12 +47,10 @@ export const useAuthStore = defineStore('auth', () => {
     localStorage.removeItem('ticketapp_session')
     isAuthenticated.value = false
     user.value = null
-    toast.success('Logged out successfully!', {
-      position: 'top-right',
-      autoClose: 10000,
-    })
-    router.replace('/login')
+    console.log('✅ Logged out successfully')
+    // toast.success('Logged out successfully!', {
+    //   position: 'top-right',
+    // })
   }
-
   return { isAuthenticated, user, handleAuthSuccess, handleLogout }
 })

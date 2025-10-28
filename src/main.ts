@@ -16,31 +16,28 @@ const router = createRouter({
 
 app.use(Vue3Toastify, {
   // ⏱ Toast behavior
-  autoClose: 5000,
+  autoClose: 10000,
   position: toast.POSITION.TOP_RIGHT,
   hideProgressBar: true,
   closeOnClick: true,
   pauseOnHover: false,
   draggable: false,
   newestOnTop: true,
-
-  // 💫 Animation — fade in/out instead of sliding
-  transition: 'zoom', // "zoom" gives a smooth appear/disappear effect
-
+  // 💫 Animation — slide in/out
+  transition: 'slide', // slide-in/slide-out effect
   // 🎨 Visuals
-  theme: 'dark',
-
+  theme: 'light',
   toastStyle: {
-    background: 'rgba(0, 0, 0, 0.85)', // glassy black background
-    color: '#fff',
+    background: '#fff', // white background
+    color: '#000', // black text
     borderRadius: '12px',
-    backdropFilter: 'blur(8px)',
     padding: '14px 18px',
     fontSize: '14px',
     fontWeight: '500',
-    boxShadow: '0 4px 16px rgba(0, 0, 0, 0.4)',
+    boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)',
   },
 })
+
 app.use(pinia)
 app.use(router)
 app.mount('#app')
